@@ -28,33 +28,11 @@ public:
   DistRobotWaypointsNode();
 
 private:
-  void next_path_point_callback(geometry_msgs::msg::PointStamped::UniquePtr msg);
+  void next_waypoint_callback(geometry_msgs::msg::PointStamped::UniquePtr msg);
   void control_cycle();
 
-  static const int FORWARD = 0;
-  static const int BACK = 1;
-  static const int TURN = 2;
-  static const int STOP = 3;
-  int state_;
-  rclcpp::Time state_ts_;
-
-  void go_state(int new_state);
-  bool check_forward_2_back();
-  bool check_forward_2_stop();
-  bool check_back_2_turn();
-  bool check_turn_2_forward();
-  bool check_stop_2_forward();
-
-  const rclcpp::Duration TURNING_TIME {2s};
-  const rclcpp::Duration BACKING_TIME {2s};
-  const rclcpp::Duration SCAN_TIMEOUT {1s};
-
-  static constexpr float SPEED_LINEAR = 0.3f;
-  static constexpr float SPEED_ANGULAR = 0.3f;
-  static constexpr float OBSTACLE_DISTANCE = 1.0f;
-
-  rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr next_path_point_sub_;
-  rclcpp::Publisher<float>::SharedPtr dist_robot_next_path_point_pub_;
+  rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr next_waypoint_point_sub_;
+  rclcpp::Publisher<float>::SharedPtr dist_robot_next_pub_;
 
   rclcpp::TimerBase::SharedPtr timer_;
 };
