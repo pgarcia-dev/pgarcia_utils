@@ -1,6 +1,3 @@
-# Prerequisites
-*.d
-
 # Compiled Object files
 *.slo
 *.lo
@@ -30,3 +27,31 @@
 *.exe
 *.out
 *.app
+
+# Colcon output
+build
+log
+install
+
+# Visual Studio Code files
+.vscode
+
+# Eclipse project files
+.cproject
+.project
+.pydevproject
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints
+
+sphinx_doc/_build
+
+# CLion artifacts
+.idea
+cmake-build-debug/
+
+# doxygen docs
+doc/html/
+.DS_Store
