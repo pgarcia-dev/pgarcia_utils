@@ -28,19 +28,23 @@ DistRobotWaypointsNode::DistRobotWaypointsNode()
 {
  // logger_ = node->get_logger();
 
-  next_waypoint_point_sub_ = create_subscription<geometry_msgs::msg::PointStamped>(
+  next_waypoint_point_sub_ = create_subscription<geometry_msgs::msg::PointStamped>(     
     "lookahead_point", rclcpp::SensorDataQoS(),
     std::bind(&DistRobotWaypointsNode::next_waypoint_callback, this, _1));
 
-  dist_robot_next_waypoint_pub_ = create_publisher<float>("dist_robot_waypoints", 10);
+  dist_robot_next_waypoint_pub_ = create_publisher<std_msgs::msg::Float32>("dist_robot_waypoints", 10);
 
   timer_ = create_wall_timer(100ms, std::bind(&DistRobotWaypointsNode::control_cycle, this));
 }
 
-void DistRobotWaypointsNode::next_waypoint_callback(sensor_msgs::msg::LaserScan::UniquePtr msg)
+void DistRobotWaypointsNode::next_waypoint_callback(geometry_msgs::msg::PointStamped::UniquePtr msg)
 {
 //  last_scan_ = std::move(msg);
-  return;
+  auto message = std_msgs::msg::Float32(); //static?
+  message.data = 0.0;
+
+
+  dist_robot_next_waypoint_pub_->publish(message);
 }
 
 void DistRobotWaypointsNode::control_cycle()
@@ -54,14 +58,8 @@ void DistRobotWaypointsNode::control_cycle()
 
   //RCLCPP_INFO(logger_, "**************");
 
-  return;
+  int x;
 }
 
-void
-DistRobotWaypointsNode::go_state(int new_state)
-{
-  state_ = new_state;
-  state_ts_ = now();
-}
 
 }  // namespace dist_robot_waypoints

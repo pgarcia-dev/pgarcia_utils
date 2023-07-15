@@ -17,6 +17,9 @@
 
 #include "rclcpp/rclcpp.hpp"
 
+#include "nav2_util/geometry_utils.hpp"
+#include "std_msgs/msg/float32.hpp"
+
 namespace dist_robot_waypoints
 {
 
@@ -32,7 +35,7 @@ private:
   void control_cycle();
 
   rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr next_waypoint_point_sub_;
-  rclcpp::Publisher<float>::SharedPtr dist_robot_next_pub_;
+  rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr dist_robot_next_waypoint_pub_;
 
   rclcpp::TimerBase::SharedPtr timer_;
 };

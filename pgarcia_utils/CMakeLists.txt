@@ -6,10 +6,12 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(nav2_util REQUIRED)
 
 set(dependencies
   rclcpp
   geometry_msgs
+  nav2_util
 )
 
 include_directories(include)
@@ -20,12 +22,18 @@ add_executable(dist_robot_waypoints
 )
 ament_target_dependencies(dist_robot_waypoints ${dependencies})
 
-install(TARGETS
-  dist_robot_waypoints
+install(TARGETS dist_robot_waypoints
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
+  #DIRECTORY launch DESTINATION share/${PROJECT_NAME}
 )
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME})
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME})
 
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 
