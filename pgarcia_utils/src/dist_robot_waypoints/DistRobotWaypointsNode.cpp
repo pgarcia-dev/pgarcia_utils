@@ -13,9 +13,12 @@
 // limitations under the License. 
 
 #include <utility>
-#include "pgarcia_utils/DistRobotWaypointsNode.hpp"
+#include <algorithm>
 
+#include "pgarcia_utils/DistRobotWaypointsNode.hpp"
 #include "rclcpp/rclcpp.hpp"
+
+using std::hypot;
 
 namespace dist_robot_waypoints
 {
@@ -41,8 +44,7 @@ void DistRobotWaypointsNode::next_waypoint_callback(geometry_msgs::msg::PointSta
 {
 //  last_scan_ = std::move(msg);
   auto message = std_msgs::msg::Float32(); //static?
-  message.data = 0.0;
-
+  message.data = hypot(msg->point.x, msg->point.y);
 
   dist_robot_next_waypoint_pub_->publish(message);
 }

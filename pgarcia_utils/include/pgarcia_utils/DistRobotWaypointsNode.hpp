@@ -16,7 +16,6 @@
 #define DIST_ROBOT_WAYPOINTS_HPP_
 
 #include "rclcpp/rclcpp.hpp"
-
 #include "nav2_util/geometry_utils.hpp"
 #include "std_msgs/msg/float32.hpp"
 
