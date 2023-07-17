@@ -17,13 +17,11 @@
 #include "pgarcia_utils/DistRobotWaypointsNode.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-using namespace dist_robot_waypoints; //==============
-
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
 
-  auto dist_robot_waypoints_node = std::make_shared<dist_robot_waypoints::DistRobotWaypointsNode>();//sin dist_robot_path::?
+  auto dist_robot_waypoints_node = std::make_shared<dist_robot_waypoints::DistRobotWaypointsNode>();
   rclcpp::spin(dist_robot_waypoints_node);
 
   rclcpp::shutdown();

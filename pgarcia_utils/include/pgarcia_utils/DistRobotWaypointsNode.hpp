@@ -21,23 +21,18 @@
 
 namespace dist_robot_waypoints
 {
+  
+  class DistRobotWaypointsNode : public rclcpp::Node
+  {
+    public:
+      DistRobotWaypointsNode();
 
-using namespace std::chrono_literals;  // NOLINT
+    private:
+      void next_waypoint_callback(geometry_msgs::msg::PointStamped::UniquePtr msg);
 
-class DistRobotWaypointsNode : public rclcpp::Node
-{
-public:
-  DistRobotWaypointsNode();
-
-private:
-  void next_waypoint_callback(geometry_msgs::msg::PointStamped::UniquePtr msg);
-  void control_cycle();
-
-  rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr next_waypoint_point_sub_;
-  rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr dist_robot_next_waypoint_pub_;
-
-  rclcpp::TimerBase::SharedPtr timer_;
-};
+      rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr next_waypoint_point_sub_;
+      rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr dist_robot_next_waypoint_pub_;
+  };
 
 }  // namespace dist_robot_waypoints
 
