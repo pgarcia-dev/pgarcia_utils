@@ -17,7 +17,7 @@ set(dependencies
 include_directories(include)
 
 add_executable(dist_robot_waypoints
-  src/dist_robot_waypoints/DistRobotWaypointsNode.cpp
+  src/dist_robot_waypoints/dist_robot_waypoints_node.cpp
   src/dist_robot_waypoints_main.cpp
 )
 ament_target_dependencies(dist_robot_waypoints ${dependencies})
@@ -26,16 +26,10 @@ install(TARGETS dist_robot_waypoints
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
-  #DIRECTORY launch DESTINATION share/${PROJECT_NAME}
 )
 
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME})
-
-install(DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME})
-
-install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

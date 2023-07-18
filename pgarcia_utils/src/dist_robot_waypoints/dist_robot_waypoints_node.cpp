@@ -15,7 +15,7 @@
 #include <utility>
 #include <algorithm>
 
-#include "pgarcia_utils/DistRobotWaypointsNode.hpp"
+#include "pgarcia_utils/dist_robot_waypoints_node.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 namespace dist_robot_waypoints
