@@ -15,8 +15,9 @@
 #include <utility>
 #include <algorithm>
 
-#include "pgarcia_utils/dist_robot_waypoints_node.hpp"
 #include "rclcpp/rclcpp.hpp"
+
+#include "pgarcia_utils/dist_robot_waypoints_node.hpp"
 
 namespace dist_robot_waypoints
 {
@@ -33,12 +34,24 @@ namespace dist_robot_waypoints
       std::bind(&DistRobotWaypointsNode::next_waypoint_callback, this, _1));
 
     dist_robot_next_waypoint_pub_ = create_publisher<std_msgs::msg::Float32>("dist_robot_waypoints", 10);
+
+    //tf2_ros::Buffer buffer_;
+    //tf2_ros::TransformListener listener_;
+
+    rclcpp::Clock::SharedPtr clock; 
+    clock = std::make_shared<rclcpp::Clock>(RCL_SYSTEM_TIME); 
+    tf_buffer_.reset(new tf2_ros::Buffer(clock)); 
+    tf_listener_.reset(new tf2_ros::TransformListener(*tf_buffer_)); 
+
+
   }
 
   void DistRobotWaypointsNode::next_waypoint_callback(geometry_msgs::msg::PointStamped::UniquePtr msg)
   {
     static auto message = std_msgs::msg::Float32(); 
     message.data = hypot(msg->point.x, msg->point.y);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "=== Receivedd point: x:%f, y:%f. Distance from robot from to point:%f", msg->point.x, msg->point.y, message.data );
 
     dist_robot_next_waypoint_pub_->publish(message);
   }
