@@ -22,6 +22,10 @@
 #include <tf2_ros/static_transform_broadcaster.h>//////////////
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include "tf2_ros/buffer.h"
+#include <nav2_costmap_2d/costmap_2d_ros.hpp>
+#include "pgarcia_utils/path_handler.hpp"
+
+//using namespace pgarcia_utils;
 
 namespace dist_robot_waypoints
 {
@@ -39,6 +43,8 @@ namespace dist_robot_waypoints
      
       std::shared_ptr<tf2_ros::TransformListener> tf_listener_;
       std::shared_ptr<tf2_ros::Buffer> tf_buffer_; 
+      std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros_;
+      std::unique_ptr<pgarcia_utils::PathHandler> path_handler_;
 
   };
 

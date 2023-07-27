@@ -38,10 +38,19 @@ namespace dist_robot_waypoints
     //tf2_ros::Buffer buffer_;
     //tf2_ros::TransformListener listener_;
 
-    rclcpp::Clock::SharedPtr clock; 
-    clock = std::make_shared<rclcpp::Clock>(RCL_SYSTEM_TIME); 
-    tf_buffer_.reset(new tf2_ros::Buffer(clock)); 
-    tf_listener_.reset(new tf2_ros::TransformListener(*tf_buffer_)); 
+  //  rclcpp::Clock::SharedPtr clock; 
+   // clock = std::make_shared<rclcpp::Clock>(RCL_SYSTEM_TIME); 
+   // tf_buffer_.reset(new tf2_ros::Buffer(clock)); 
+    //tf_listener_.reset(new tf2_ros::TransformListener(*tf_buffer_)); 
+
+  tf_buffer_= std::make_shared<tf2_ros::Buffer> (get_clock ());
+  tf_listener_ = std::make_shared<tf2_ros::TransformListener> (*tf_buffer_);
+
+  costmap_ros_ = std::make_shared<nav2_costmap_2d::Costmap2DROS> ("my_costmap", true); //*tf_listener_); //*this);
+  costmap_ros_->start();
+
+  // Handles global path transformations
+  path_handler_ = std::make_unique<pgarcia_utils::PathHandler>( tf2::durationFromSec(0.1), tf_buffer_, costmap_ros_); //================
 
 
   }

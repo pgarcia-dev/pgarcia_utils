@@ -31,6 +31,7 @@ include_directories(include)
 
 add_executable(dist_robot_waypoints
   src/dist_robot_waypoints/dist_robot_waypoints_node.cpp
+  src/dist_robot_waypoints/path_handler.cpp
   src/dist_robot_waypoints_main.cpp
 )
 ament_target_dependencies(dist_robot_waypoints ${dependencies})
