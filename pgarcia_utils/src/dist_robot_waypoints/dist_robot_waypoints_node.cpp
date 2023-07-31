@@ -15,20 +15,16 @@
 #include <utility>
 #include <algorithm>
 
-#include "rclcpp/rclcpp.hpp"
-
+#include <rclcpp/rclcpp.hpp>
 #include "pgarcia_utils/dist_robot_waypoints_node.hpp"
 
 namespace dist_robot_waypoints
 {
-
   using std::placeholders::_1;
 
   DistRobotWaypointsNode::DistRobotWaypointsNode()
   : Node("dist_robot_waypoints")
   {
-
-
     next_waypoint_point_sub_ = create_subscription<geometry_msgs::msg::PointStamped> ("lookahead_point", rclcpp::SensorDataQoS(), 
       std::bind(&DistRobotWaypointsNode::next_waypoint_callback, this, _1));
 

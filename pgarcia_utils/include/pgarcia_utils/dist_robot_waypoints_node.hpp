@@ -15,22 +15,19 @@
 #ifndef DIST_ROBOT_WAYPOINTS_HPP_
 #define DIST_ROBOT_WAYPOINTS_HPP_
 
-#include "rclcpp/rclcpp.hpp"
-#include "nav2_util/geometry_utils.hpp"
-#include "std_msgs/msg/float32.hpp"
+#include <rclcpp/rclcpp.hpp>
 #include <tf2_ros/transform_listener.h>///////////
 #include <tf2_ros/static_transform_broadcaster.h>//////////////
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
-#include "tf2_ros/buffer.h"
-#include <nav2_costmap_2d/costmap_2d_ros.hpp>
-#include "pgarcia_utils/path_handler.hpp"
+#include <tf2_ros/buffer.h>
+#include <std_msgs/msg/float32.hpp>
+#include "nav2_util/geometry_utils.hpp"
+#include "nav2_costmap_2d/costmap_2d_ros.hpp"
 #include "nav_msgs/msg/odometry.hpp"
-
-//using namespace pgarcia_utils;
+#include "pgarcia_utils/path_handler.hpp"
 
 namespace dist_robot_waypoints
-{
-  
+{  
   class DistRobotWaypointsNode : public rclcpp::Node
   {
     public:
@@ -48,8 +45,6 @@ namespace dist_robot_waypoints
       std::shared_ptr<tf2_ros::Buffer> tf_buffer_; 
       std::shared_ptr<nav2_costmap_2d::Costmap2DROS> costmap_ros_;
       std::unique_ptr<pgarcia_utils::PathHandler> path_handler_;
-      
-
   };
 
 }  // namespace dist_robot_waypoints
