@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
+Author: Pablo García
+Email: pgarcia.developer@gmail.com
+
 This ROS 2 node subscribes to a laser scan topic, then publishes a line marker
 in RViz2 for each laser beam. The line marker extends from the robot's origin
 (rplidar_link) to the point where the laser beam collides with an obstacle.

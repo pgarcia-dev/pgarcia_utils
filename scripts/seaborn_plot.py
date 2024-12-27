@@ -1,3 +1,8 @@
+"""
+Author: Pablo García
+Email: pgarcia.developer@gmail.com
+"""
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
